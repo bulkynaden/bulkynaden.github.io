@@ -163,7 +163,6 @@
    * Inicializar Glightbox en detalles de galería
    */
   const portfolioDetailsLightbox = GLightbox({
-    selector: '.galeria-details-lightbox',
     width: '90%',
     height: '90vh'
   });
@@ -171,7 +170,7 @@
   /**
    * Slider de detalles de galería
    */
-  new Swiper('.galeria-details-slider', {
+  new Swiper({
     speed: 400,
     loop: true,
     autoplay: {
@@ -179,7 +178,6 @@
       disableOnInteraction: false
     },
     pagination: {
-      el: '.swiper-pagination',
       type: 'bullets',
       clickable: true
     }
