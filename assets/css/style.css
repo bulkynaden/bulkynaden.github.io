@@ -890,13 +890,27 @@ section {
   padding: 10px 12px;
 }
 
-.contacto .formulario button[type=submit] {
+.contacto .formulario button {
   background: var(--enlace);
   border: 0;
   padding: 10px 30px 12px 30px;
   color: #fff;
   transition: 0.4s;
   border-radius: 50px;
+  margin: 10px 12px;
+  }
+  
+  .contacto .formulario button[type=reset] {
+    background: var(--header-footer);
+    color: var(--texto-principal)
+  }
+  
+  .contacto .formulario button:hover {
+    background: var(--boton-hover)
+  }
+  
+  .contacto .formulario button[type=reset]:hover {
+    background: #d1d0cf
 }
 
 .contacto iframe {
@@ -936,7 +950,7 @@ section {
 }
 
 .footer-social-links a {
-  color: #6f6f6f;
+  color: var(--enlace);
   padding-left: 4px;
   display: inline-block;
   line-height: 0px;
@@ -945,5 +959,5 @@ section {
 }
 
 .footer-social-links a:hover {
-  color: var(--enlace);
+  color: var(--enlace-hover);
 }
