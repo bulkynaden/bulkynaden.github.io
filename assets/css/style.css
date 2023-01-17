@@ -299,11 +299,6 @@ h6 {
     color: var(--enlace);
 }
 
-.navbar-mobile .get-started,
-.navbar-mobile .get-started:focus {
-    margin: 15px;
-}
-
 /*--------------------------------------------------------------
 # Página principal
 --------------------------------------------------------------*/
@@ -374,11 +369,9 @@ h6 {
     #index:before {
         content: "";
         background: rgba(255, 255, 255, 0.8);
+        height: 100%;
         position: absolute;
-        bottom: 0;
-        top: 0;
-        left: 0;
-        right: 0;
+        width: 100%;
     }
 
     #index h1 {
