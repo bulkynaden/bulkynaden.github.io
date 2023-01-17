@@ -1,6 +1,7 @@
 /**
  * Mostrar ventana de SweetAlert al confirmar cita
  */
+
 $('#miFormulario').on('submit', function (e) {
     e.preventDefault();
     Swal.fire({
