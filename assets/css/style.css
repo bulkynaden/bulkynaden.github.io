@@ -369,6 +369,7 @@ h6 {
     #index:before {
         content: "";
         background: rgba(255, 255, 255, 0.8);
+        background-size: cover;
         height: 100%;
         position: absolute;
         width: 100%;
