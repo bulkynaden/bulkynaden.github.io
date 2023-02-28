@@ -162,6 +162,16 @@ h6 {
 # Navbar
 --------------------------------------------------------------*/
 /**
+* reloj */ #reloj {
+    font-family: "Raleway", sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--enlace);
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+/**
 * Desktop Navigation 
 */
 .navbar {
