@@ -92,6 +92,7 @@ if (foto) {
 Ejercicio 7: Muestre por consola el nombre de todos los usuarios del JSON del 
 archivo json.js
 */
+
 console.log("---------DATOS EJERCICIO 7---------");
 json.forEach(usuario => console.log(usuario.name)); // La variable "json" está en el archivo "json.js"
 
@@ -202,6 +203,7 @@ console.log("dirección:", userPrueba.direccion);
 Ejercicio 10: Implemente una función que pasándole como parámetro un objeto del 
 json mapee y cree un objeto del tipo Usuario.
 */
+
 function jsonToUsario(usuarioJson) {
   const direccion = {
     calle: usuarioJson.address.street,
@@ -480,7 +482,7 @@ se deberá actualizar la vista mostrando solamente aquellos que sean de la ciuda
 
 function filtrarCiudad(ciudad) {
   // Filtrar los usuarios de la ciudad seleccionada
-  const usuariosCiudad = usuarios.filter((usuario) => usuario.direccion.ciudad === ciudad);
+  const usuariosCiudad = mapaUsuarios.find((elemento) => elemento.ciudad === ciudad).usuarios;
 
   // Genero el html de los usuarios filtrados
   let contenidoFiltrado = `<div class="tabla">`;
