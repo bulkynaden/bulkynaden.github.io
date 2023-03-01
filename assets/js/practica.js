@@ -93,7 +93,7 @@ Ejercicio 7: Muestre por consola el nombre de todos los usuarios del JSON del
 archivo json.js
 */
 
-console.log("---------DATOS EJERCICIO 7---------");
+console.log("Ejercicio 7 ==> ");
 json.forEach(usuario => console.log(usuario.name)); // La variable "json" está en el archivo "json.js"
 
 /*
@@ -137,20 +137,41 @@ class Usuario {
     return this.#nombre;
   }
 
+  set nombre(nombre) {
+    this.#nombre = nombre;
+  }
+
   get nombreUser() {
     return this.#nombreUser;
+  }
+
+  set nombreUser(nombreUser) {
+    this.#nombreUser = nombreUser;
   }
 
   get email() {
     return this.#email;
   }
 
+  set email(email) {
+    this.#email = email;
+  }
+
   get url() {
     return this.#url;
   }
 
+  set url(url) {
+    this.#url = url;
+    this.#idUser = Usuario.getId(url); // Actualizamos el Id si cambia la URL
+  }
+
   get empresa() {
     return this.#empresa.nombre;
+  }
+
+  set empresa(empresa) {
+    this.#empresa = empresa;
   }
 
   get direccion() {
@@ -161,8 +182,16 @@ class Usuario {
     };
   }
 
+  set direccion(direccion) {
+    this.#direccion = direccion;
+  }
+
   get edad() {
     return this.#edad;
+  }
+
+  set edad(edad) {
+    this.#edad = edad;
   }
 
   static getId(url) {
@@ -191,7 +220,7 @@ const userPrueba = new Usuario(
   "https://prueba.dev/api/users/102/"
 );
 
-console.log("---------DATOS EJERCICIO 9---------");
+console.log("Ejercicio 9 ==> ");
 console.log("id:", userPrueba.idUser);
 console.log("nombre:", userPrueba.nombre);
 console.log("nombre de usuario:", userPrueba.nombreUser);
@@ -252,7 +281,7 @@ const usuarioJson = {
 };
 
 const usuario = jsonToUsario(usuarioJson);
-console.log("---------DATOS EJERCICIO 10---------");
+console.log("Ejercicio 10 ==> ");
 console.log("id:", Usuario.getId(usuario.url));
 console.log("nombre:", usuario.nombre);
 console.log("nombre de usuario:", usuario.nombreUser);
@@ -284,7 +313,7 @@ punto anterior. Muestre por consola SÓLO el nombre del usuario.
 
 var usuarios = getArrayUsuarios(json);
 
-console.log("---------DATOS EJERCICIO 12---------");
+console.log("Ejercicio 12 ==>");
 
 usuarios.forEach(usuario => {
   console.log(usuario.nombre);
@@ -311,11 +340,11 @@ class UsuariosPorCiudad {
 const mapaUsuarios = [];
 
 // Extraigo la lista de ciudades únicas
-const ciudadesUnicas = [...new Set(usuarios.map(user => user.direccion.ciudad))];
+const ciudadesUnicas = [...new Set(usuarios.map(user => user.direccion.ciudad.toUpperCase()))];
 
 ciudadesUnicas.forEach(ciudad => {
   // Obtengo los usuarios de esa ciudad en un array
-  const listaUsuarios = usuarios.filter(user => user.direccion.ciudad === ciudad);
+  const listaUsuarios = usuarios.filter(user => user.direccion.ciudad.toUpperCase() === ciudad.toUpperCase());
 
   // Creo un nuevo objeto de la clase UsuariosPorCiudad
   const usuariosPorCiudad = new UsuariosPorCiudad(ciudad);
@@ -327,7 +356,7 @@ ciudadesUnicas.forEach(ciudad => {
   mapaUsuarios.push(usuariosPorCiudad);
 });
 
-console.log("---------DATOS EJERCICIO 13---------");
+console.log("Ejercicio 13 ==> ");
 for (const elemento of mapaUsuarios) {
   console.log(`Usuarios de la ciudad: ${elemento.ciudad}`);
 
@@ -346,7 +375,7 @@ mapaUsuarios.forEach(elemento => {
   elemento.usuarios.sort((a, b) => a.nombre.localeCompare(b.nombre)); // Orden natural
 });
 
-console.log("---------DATOS EJERCICIO 14---------");
+console.log("Ejercicio 14 ==> ");
 for (const elemento of mapaUsuarios) {
   console.log(`Usuarios de la ciudad: ${elemento.ciudad}`);
 
@@ -372,7 +401,7 @@ enlaceUsuarios.addEventListener("click", mostrarUsuarios);
 // Creo el select para el ejercicio 16
 const selectCiudades = document.createElement("select");
 selectCiudades.id = "selectCiudades";
-selectCiudades.innerHTML = ciudadesUnicas.map((ciudad) => `<option>${ciudad}</option>`).join("");
+selectCiudades.innerHTML = `<option>Todas</option>` + ciudadesUnicas.map((ciudad) => `<option>${ciudad}</option>`).join("");
 
 // Creo el select para el ejercicio 20
 let selectUsuarios = document.createElement("select");
@@ -403,9 +432,9 @@ function mostrarUsuarios() {
   todosLosUsuarios.forEach((usuario) => {
     // Compruebo la ciudad para cambiarle el color
     let colorTexto = '';
-    if (usuario.direccion.ciudad === 'Gwenborough') {
+    if (usuario.direccion.ciudad.toUpperCase() === 'Gwenborough'.toUpperCase()) {
       colorTexto = 'blue';
-    } else if (usuario.direccion.ciudad === 'Wisokyburgh') {
+    } else if (usuario.direccion.ciudad.toUpperCase() === 'Wisokyburgh'.toUpperCase()) {
       colorTexto = 'green';
     }
 
@@ -456,7 +485,12 @@ function mostrarUsuarios() {
 
       // Agrego evento "change" al select de ciudades
       selectCiudades.addEventListener('change', (evento) => {
-        const ciudadSeleccionada = evento.target.value;
+        let ciudadSeleccionada = evento.target.value;
+
+        // Asigno null si elige la opción todas.
+        if (ciudadSeleccionada === "Todas") {
+          ciudadSeleccionada = null;
+        }
         filtrarCiudad(ciudadSeleccionada);
       });
 
@@ -481,17 +515,22 @@ se deberá actualizar la vista mostrando solamente aquellos que sean de la ciuda
 */
 
 function filtrarCiudad(ciudad) {
-  // Filtrar los usuarios de la ciudad seleccionada
-  const usuariosCiudad = mapaUsuarios.find((elemento) => elemento.ciudad === ciudad).usuarios;
+  let usuariosCiudad;
+  if (ciudad) {
+    // Filtrar los usuarios de la ciudad seleccionada
+    usuariosCiudad = mapaUsuarios.find((elemento) => elemento.ciudad.toUpperCase() === ciudad.toUpperCase()).usuarios;
+  } else {
+    usuariosCiudad = usuarios;
+  }
 
   // Genero el html de los usuarios filtrados
   let contenidoFiltrado = `<div class="tabla">`;
   usuariosCiudad.forEach((usuario) => {
     // Compruebo la ciudad para cambiarle el color
     let colorTexto = '';
-    if (ciudad === 'Gwenborough') {
+    if (usuario.direccion.ciudad.toUpperCase() === 'Gwenborough'.toUpperCase()) {
       colorTexto = 'blue';
-    } else if (ciudad === 'Wisokyburgh') {
+    } else if (usuario.direccion.ciudad.toUpperCase() === 'Wisokyburgh'.toUpperCase()) {
       colorTexto = 'green';
     }
     contenidoFiltrado += `
@@ -548,7 +587,7 @@ Cuando se seleccione una ciudad a través del elemento Select, también se deber
 function calcularDatos(ciudadSeleccionada) {
   let usuariosFiltrados;
   if (ciudadSeleccionada) {
-    usuariosFiltrados = usuarios.filter((usuario) => usuario.direccion.ciudad === ciudadSeleccionada);
+    usuariosFiltrados = usuarios.filter((usuario) => usuario.direccion.ciudad.toUpperCase() === ciudadSeleccionada.toUpperCase());
   } else {
     usuariosFiltrados = usuarios;
   }
@@ -615,7 +654,7 @@ los nombres de todos los usuarios, y otro elemento html, de su elección, que mu
 
 function filtrarDireccion(usuario) {
   // Busco al usuario por nombre
-  let usuarioSeleccionado = usuarios.find(u => u.nombre === usuario);
+  let usuarioSeleccionado = usuarios.find(u => u.nombre.toUpperCase() === usuario.toUpperCase());
 
   // Obtengo la dirección
   const direccion = `C/ ${usuarioSeleccionado.direccion.calle}, ${usuarioSeleccionado.direccion.ciudad} (${usuarioSeleccionado.direccion.codigoPostal})`;
