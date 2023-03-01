@@ -1,283 +1,278 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta
       content="Página web del salón de belleza Beauty Estilistas. Los mejores servicios a su disposición. ¡Pida cita ya!"
       name="description">
-  <meta content="peluquería, belleza, peinado, boda, novia" name="keywords">
-  <meta content="Javier Tomás Acín" name="author">
-  <meta content="Beauty Estilistas" name="copyright"/>
-  <title>Beauty Estilistas</title>
+    <meta content="peluquería, belleza, peinado, boda, novia" name="keywords">
+    <meta content="Javier Tomás Acín" name="author">
+    <meta content="Beauty Estilistas" name="copyright" />
+    <title>Beauty Estilistas</title>
 
-  <!-- Favicons -->
-  <link href="./assets/img/favicon.png" rel="icon">
-  <link href="./assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <!-- Favicons -->
+    <link href="./assets/img/favicon.png" rel="icon">
+    <link href="./assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Google Fonts -->
-  <link
+    <!-- Google Fonts -->
+    <link
       href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
       rel="stylesheet">
 
-  <!-- Css externo -->
-  <link href="./assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="./assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="./assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="./assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="./assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="./assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Css externo -->
+    <link href="./assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="./assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="./assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="./assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="./assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="./assets/vendor/sweetalert2/sweetalert2.css" rel="stylesheet">
 
-  <!-- Css principal-->
-  <link href="./assets/css/style.css" rel="stylesheet">
+    <!-- Css principal-->
+    <link href="./assets/css/style.css" rel="stylesheet">
 
-</head>
+  </head>
 
-<body>
+  <body>
 
-<!-- ======= Header ======= -->
-<header class="fixed-top" id="header">
-  <div class="container-fluid d-flex justify-content-between align-items-center">
+    <!-- ======= Header ======= -->
+    <header class="fixed-top" id="header">
+      <div class="container-fluid d-flex justify-content-between align-items-center">
+        <h1 class="logo me-auto me-lg-0"><a href="./index.html">Beauty Estilistas</a></h1>
+        <div id="reloj"></div>
 
-    <h1 class="logo me-auto me-lg-0"><a href="./index.html">Beauty Estilistas</a></h1>
-
-    <!-- ======= Navbar ======= -->
-    <nav class="navbar order-last order-lg-0" id="navbar">
-      <ul>
-        <li><a href="./index.html">Inicio</a></li>
-        <li><a href="./cita.html">Pida cita</a></li>
-        <li><a href="./servicios.html">Servicios</a></li>
-        <li><a class="active" href="./galeria.html">Galería</a></li>
-        <li><a href="./about.html">Acerca de...</a></li>
-        <li><a href="./contact.html">Contacto</a></li>
-      </ul>
-      <i class="bi bi-list mobile-nav-toggle"></i>
-    </nav>
-    <!-- Fin Navbar -->
-
-  </div>
-</header>
-<!-- Fin Header -->
-
-<main id="main">
-
-  <!-- ======= Galería ======= -->
-  <section class="galeria" id="galeria">
-    <div class="container" data-aos="fade-up">
-
-      <div class="section-title">
-        <h2>Galería de fotos</h2>
-        <p>Colección de fotos que muestra la variedad de cortes de pelo y peinados que
-          realizamos.</p>
-      </div>
-
-      <div class="row" data-aos="fade-up" data-aos-delay="100">
-        <div class="col-lg-12 d-flex justify-content-center">
-          <ul id="galeria-filters">
-            <li class="filter-active" data-filter="*">Todos</li>
-            <li data-filter=".filter-chica">Chicas</li>
-            <li data-filter=".filter-chico">Chicos</li>
-            <li data-filter=".filter-boda">Boda</li>
+        <!-- ======= Navbar ======= -->
+        <nav class="navbar order-last order-lg-0" id="navbar">
+          <ul>
+            <li><a href="./index.html">Inicio</a></li>
+            <li><a href="./cita.html">Pida cita</a></li>
+            <li><a href="./servicios.html">Servicios</a></li>
+            <li><a class="active" href="./galeria.html">Galería</a></li>
+            <li><a href="./about.html">Acerca de...</a></li>
+            <li><a href="./contact.html">Contacto</a></li>
+            <li><a href="#" id="mostrarUsuarios">Usuarios</a></li>
           </ul>
-        </div>
-      </div>
-
-      <div class="row galeria-container" data-aos="fade-up" data-aos-delay="200">
-
-        <div class="col-lg-4 col-md-6 galeria-item filter-chica">
-          <div class="galeria-wrap">
-            <img alt="" class="img-fluid" src="./assets/img/galeria/chica1.jpg">
-            <div class="galeria-info">
-              <h4>Chica</h4>
-              <p>Peinado corte recto</p>
-              <div class="galeria-links">
-                <a class="galeria-lightbox" data-gallery="portfolioGallery"
-                   href="./assets/img/galeria/chica1.jpg"><i
-                    class="bi bi-arrows-fullscreen"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 galeria-item filter-chico">
-          <div class="galeria-wrap">
-            <img alt="" class="img-fluid" src="./assets/img/galeria/chico1.jpg">
-            <div class="galeria-info">
-              <h4>Chico</h4>
-              <p>Corte y peinado</p>
-              <div class="galeria-links">
-                <a class="galeria-lightbox" data-gallery="portfolioGallery"
-                   href="./assets/img/galeria/chico1.jpg"><i
-                    class="bi bi-arrows-fullscreen"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 galeria-item filter-chica">
-          <div class="galeria-wrap">
-            <img alt="" class="img-fluid" src="./assets/img/galeria/chica2.jpg">
-            <div class="galeria-info">
-              <h4>Chica</h4>
-              <p>Pelo recogido</p>
-              <div class="galeria-links">
-                <a class="galeria-lightbox" data-gallery="portfolioGallery"
-                   href="./assets/img/galeria/chica2.jpg"><i
-                    class="bi bi-arrows-fullscreen"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 galeria-item filter-boda">
-          <div class="galeria-wrap">
-            <img alt="" class="img-fluid" src="./assets/img/galeria/boda1.jpg">
-            <div class="galeria-info">
-              <h4>Boda</h4>
-              <p>Peinado de boda elegante</p>
-              <div class="galeria-links">
-                <a class="galeria-lightbox" data-gallery="portfolioGallery"
-                   href="./assets/img/galeria/boda1.jpg"><i
-                    class="bi bi-arrows-fullscreen"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 galeria-item filter-boda">
-          <div class="galeria-wrap">
-            <img alt="" class="img-fluid" src="./assets/img/galeria/boda2.jpg">
-            <div class="galeria-info">
-              <h4>Boda</h4>
-              <p>Peinado de boda elegante</p>
-              <div class="galeria-links">
-                <a class="galeria-lightbox" data-gallery="portfolioGallery"
-                   href="./assets/img/galeria/boda2.jpg"><i
-                    class="bi bi-arrows-fullscreen"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 galeria-item filter-chico">
-          <div class="galeria-wrap">
-            <img alt="" class="img-fluid" src="./assets/img/galeria/chico2.jpg">
-            <div class="galeria-info">
-              <h4>Chico</h4>
-              <p>Cuatro fotos</p>
-              <div class="galeria-links">
-                <a class="galeria-lightbox" data-gallery="portfolioGallery"
-                   href="./assets/img/galeria/chico2.jpg"><i
-                    class="bi bi-arrows-fullscreen"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 galeria-item filter-boda">
-          <div class="galeria-wrap">
-            <img alt="" class="img-fluid" src="./assets/img/galeria/boda3.jpg">
-            <div class="galeria-info">
-              <h4>Boda</h4>
-              <p>Peinado de boda elegante</p>
-              <div class="galeria-links">
-                <a class="galeria-lightbox" data-gallery="portfolioGallery"
-                   href="./assets/img/galeria/boda3.jpg"><i
-                    class="bi bi-arrows-fullscreen"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 galeria-item filter-chico">
-          <div class="galeria-wrap">
-            <img alt="" class="img-fluid" src="./assets/img/galeria/chico3.jpg">
-            <div class="galeria-info">
-              <h4>Chico</h4>
-              <p>Corte con ralla</p>
-              <div class="galeria-links">
-                <a class="galeria-lightbox" data-gallery="portfolioGallery"
-                   href="./assets/img/galeria/chico3.jpg"><i
-                    class="bi bi-arrows-fullscreen"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 galeria-item filter-chica">
-          <div class="galeria-wrap">
-            <img alt="" class="img-fluid" src="./assets/img/galeria/chica3.jpg">
-            <div class="galeria-info">
-              <h4>Chica</h4>
-              <p>Moño alto</p>
-              <div class="galeria-links">
-                <a class="galeria-lightbox" data-gallery="portfolioGallery"
-                   href="./assets/img/galeria/chica3.jpg"><i
-                    class="bi bi-arrows-fullscreen"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+        <!-- Fin Navbar -->
 
       </div>
+    </header>
+    <!-- Fin Header -->
 
-    </div>
-  </section><!-- Fin Galería -->
+    <main id="main">
 
-</main>
-<!-- Fin Main -->
+      <!-- ======= Galería ======= -->
+      <section class="galeria" id="galeria">
+        <div class="container" data-aos="fade-up">
 
-<!-- ======= Footer ======= -->
-<footer id="footer">
-  <div class="container d-flex justify-content-center">
-    <div class="row">
-      <div class="footer-social-links col-3">
-        <a class="twitter" href="http://www.twitter.es" title="Link a Twitter"><i
-            class="bi bi-twitter"></i></a>
+          <div class="section-title">
+            <h2>Galería de fotos</h2>
+            <p>Colección de fotos que muestra la variedad de cortes de pelo y peinados que
+              realizamos.</p>
+          </div>
+
+          <div class="row" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-12 d-flex justify-content-center">
+              <ul id="galeria-filters">
+                <li class="filter-active" data-filter="*">Todos</li>
+                <li data-filter=".filter-chica">Chicas</li>
+                <li data-filter=".filter-chico">Chicos</li>
+                <li data-filter=".filter-boda">Boda</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="row galeria-container" data-aos="fade-up" data-aos-delay="200">
+
+            <div class="col-lg-4 col-md-6 galeria-item filter-chica">
+              <div class="galeria-wrap">
+                <img alt="" class="img-fluid" src="./assets/img/galeria/chica1.jpg">
+                <div class="galeria-info">
+                  <h4>Chica</h4>
+                  <p>Peinado corte recto</p>
+                  <div class="galeria-links">
+                    <a class="galeria-lightbox" data-gallery="portfolioGallery"
+                      href="./assets/img/galeria/chica1.jpg"><i class="bi bi-arrows-fullscreen"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 galeria-item filter-chico">
+              <div class="galeria-wrap">
+                <img alt="" class="img-fluid" src="./assets/img/galeria/chico1.jpg">
+                <div class="galeria-info">
+                  <h4>Chico</h4>
+                  <p>Corte y peinado</p>
+                  <div class="galeria-links">
+                    <a class="galeria-lightbox" data-gallery="portfolioGallery"
+                      href="./assets/img/galeria/chico1.jpg"><i class="bi bi-arrows-fullscreen"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 galeria-item filter-chica">
+              <div class="galeria-wrap">
+                <img alt="" class="img-fluid" src="./assets/img/galeria/chica2.jpg">
+                <div class="galeria-info">
+                  <h4>Chica</h4>
+                  <p>Pelo recogido</p>
+                  <div class="galeria-links">
+                    <a class="galeria-lightbox" data-gallery="portfolioGallery"
+                      href="./assets/img/galeria/chica2.jpg"><i class="bi bi-arrows-fullscreen"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 galeria-item filter-boda">
+              <div class="galeria-wrap">
+                <img alt="" class="img-fluid" src="./assets/img/galeria/boda1.jpg">
+                <div class="galeria-info">
+                  <h4>Boda</h4>
+                  <p>Peinado de boda elegante</p>
+                  <div class="galeria-links">
+                    <a class="galeria-lightbox" data-gallery="portfolioGallery" href="./assets/img/galeria/boda1.jpg"><i
+                        class="bi bi-arrows-fullscreen"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 galeria-item filter-boda">
+              <div class="galeria-wrap">
+                <img alt="" class="img-fluid" src="./assets/img/galeria/boda2.jpg">
+                <div class="galeria-info">
+                  <h4>Boda</h4>
+                  <p>Peinado de boda elegante</p>
+                  <div class="galeria-links">
+                    <a class="galeria-lightbox" data-gallery="portfolioGallery" href="./assets/img/galeria/boda2.jpg"><i
+                        class="bi bi-arrows-fullscreen"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 galeria-item filter-chico">
+              <div class="galeria-wrap">
+                <img alt="" class="img-fluid" src="./assets/img/galeria/chico2.jpg">
+                <div class="galeria-info">
+                  <h4>Chico</h4>
+                  <p>Cuatro fotos</p>
+                  <div class="galeria-links">
+                    <a class="galeria-lightbox" data-gallery="portfolioGallery"
+                      href="./assets/img/galeria/chico2.jpg"><i class="bi bi-arrows-fullscreen"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 galeria-item filter-boda">
+              <div class="galeria-wrap">
+                <img alt="" class="img-fluid" src="./assets/img/galeria/boda3.jpg">
+                <div class="galeria-info">
+                  <h4>Boda</h4>
+                  <p>Peinado de boda elegante</p>
+                  <div class="galeria-links">
+                    <a class="galeria-lightbox" data-gallery="portfolioGallery" href="./assets/img/galeria/boda3.jpg"><i
+                        class="bi bi-arrows-fullscreen"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 galeria-item filter-chico">
+              <div class="galeria-wrap">
+                <img alt="" class="img-fluid" src="./assets/img/galeria/chico3.jpg">
+                <div class="galeria-info">
+                  <h4>Chico</h4>
+                  <p>Corte con ralla</p>
+                  <div class="galeria-links">
+                    <a class="galeria-lightbox" data-gallery="portfolioGallery"
+                      href="./assets/img/galeria/chico3.jpg"><i class="bi bi-arrows-fullscreen"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 galeria-item filter-chica">
+              <div class="galeria-wrap">
+                <img alt="" class="img-fluid" src="./assets/img/galeria/chica3.jpg">
+                <div class="galeria-info">
+                  <h4>Chica</h4>
+                  <p>Moño alto</p>
+                  <div class="galeria-links">
+                    <a class="galeria-lightbox" data-gallery="portfolioGallery"
+                      href="./assets/img/galeria/chica3.jpg"><i class="bi bi-arrows-fullscreen"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section><!-- Fin Galería -->
+
+    </main>
+    <!-- Fin Main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+      <div class="container d-flex justify-content-center">
+        <div class="row">
+          <div class="footer-social-links col-3">
+            <a class="twitter" href="http://www.twitter.es" title="Link a Twitter"><i class="bi bi-twitter"></i></a>
+          </div>
+          <div class="footer-social-links col-3">
+            <a class="facebook" href="http://www.facebook.es" title="Link a Facebook"><i class="bi bi-facebook"></i></a>
+          </div>
+          <div class="footer-social-links col-3">
+            <a class="instagram" href="https://www.instagram.com" title="Link a Instagram"><i
+                class="bi bi-instagram"></i></a>
+          </div>
+          <div class="footer-social-links col-3">
+            <a class="linkedin" href="https://es.linkedin.com/" title="Link a Linkedin"><i
+                class="bi bi-linkedin"></i></a>
+          </div>
+          <div class="copyright col-12">
+            &copy; Copyright <strong><span>Beauty Estilistas</span></strong>. Todos los derechos
+            reservados
+          </div>
+          <div class="credits col-12">
+            Diseñado por Javier Tomás Acín <a href="https://github.com/bulkynaden" title="Link al sitio de GitHub"><i
+                class="bi bi-github"></i> GitHub</a>
+          </div>
+        </div>
       </div>
-      <div class="footer-social-links col-3">
-        <a class="facebook" href="http://www.facebook.es" title="Link a Facebook"><i
-            class="bi bi-facebook"></i></a>
-      </div>
-      <div class="footer-social-links col-3">
-        <a class="instagram" href="https://www.instagram.com" title="Link a Instagram"><i
-            class="bi bi-instagram"></i></a>
-      </div>
-      <div class="footer-social-links col-3">
-        <a class="linkedin" href="https://es.linkedin.com/" title="Link a Linkedin"><i
-            class="bi bi-linkedin"></i></a>
-      </div>
-      <div class="copyright col-12">
-        &copy; Copyright <strong><span>Beauty Estilistas</span></strong>. Todos los derechos
-        reservados
-      </div>
-      <div class="credits col-12">
-        Diseñado por Javier Tomás Acín <a href="https://github.com/bulkynaden"
-                                          title="Link al sitio de GitHub"><i
-          class="bi bi-github"></i> GitHub</a>
-      </div>
-    </div>
-  </div>
-</footer>
-<!-- Fin Footer -->
+    </footer>
+    <!-- Fin Footer -->
 
-<div id="preloader"></div>
-<a class="back-to-top d-flex align-items-center justify-content-center" href="#"
-   title="Volver al inicio"><i
-    class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <a class="back-to-top d-flex align-items-center justify-content-center" href="#" title="Volver al inicio"><i
+        class="bi bi-arrow-up-short"></i></a>
 
-<!-- JS externo -->
-<script src="./assets/vendor/aos/aos.js"></script>
-<script src="./assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="./assets/vendor/glightbox/js/glightbox.min.js"></script>
-<script src="./assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<script src="./assets/vendor/swiper/swiper-bundle.min.js"></script>
-<script src="./assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <!-- JS externo -->
+    <script src="./assets/vendor/aos/aos.js"></script>
+    <script src="./assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="./assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="./assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="./assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="./assets/vendor/sweetalert2/sweetalert2.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+      src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 
-<!-- JS Principal -->
-<script src="./assets/js/main.js"></script>
-<script src="./assets/js/paginaGaleria.js"></script>
+    <!-- JS Principal -->
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/paginaGaleria.js"></script>
+    <script src="./assets/js/json.js"></script>
+    <script src="./assets/js/practica.js"></script>
+    
+  </body>
 
-</body>
 </html>

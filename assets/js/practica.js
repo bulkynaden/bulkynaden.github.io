@@ -18,10 +18,10 @@ del sistema en formato HH:MM:S
 */
 
 const getHora = function () {
-  const currentDate = new Date();
-  const horas = currentDate.getHours().toString().padStart(2, "0");
-  const minutos = currentDate.getMinutes().toString().padStart(2, "0");
-  const segundos = currentDate.getSeconds().toString().padStart(2, "0");
+  const horaActual = new Date();
+  const horas = horaActual.getHours().toString().padStart(2, "0");
+  const minutos = horaActual.getMinutes().toString().padStart(2, "0");
+  const segundos = horaActual.getSeconds().toString().padStart(2, "0");
   return `${horas}:${minutos}:${segundos}`;
 };
 
@@ -33,9 +33,9 @@ documento html el elemento que estime oportuno).
 */
 
 function actualizaReloj() {
-  const reloj = document.getElementById("reloj"); //Obtiene el elemento con id reloj
+  const reloj = document.getElementById("reloj"); // Obtengo el elemento con id reloj
   if (reloj) {
-    reloj.textContent = getHora(); //Llama a la función del apartado anterior
+    reloj.textContent = getHora(); // Llama a la función del apartado anterior
   }
 }
 
@@ -52,14 +52,14 @@ original que tenía.
 para realizar este ejercicio
 */
 
-const titulo = document.getElementById("titulo"); //Obtiene el elemento con id titulo
+const titulo = document.getElementById("titulo"); // Obtengo el elemento con id titulo
 
 titulo.addEventListener("mouseenter", function () {
-  this.style.color = "#ffff00"; //Añado el color
+  this.style.color = "#ffff00"; // Añado el color
 });
 
 titulo.addEventListener("mouseleave", function () {
-  this.style.color = ""; //Quito el color
+  this.style.color = ""; // Quito el color
 });
 
 /*
@@ -73,8 +73,8 @@ dicha imagen).
 
 //La foto que he elegido es la foto de la chica en el apartado "Acerca de..."
 
-let imagenInicial = true; //Inicio un booleano para saber cual es la foto actual.
-const foto = document.getElementById("miFoto"); //Obtiene el elemento con id miFoto
+let imagenInicial = true; // Inicio un booleano para saber cual es la foto actual.
+const foto = document.getElementById("miFoto"); // Obtengo el elemento con id miFoto
 
 if (foto) {
   foto.addEventListener("click", function () {
@@ -93,7 +93,7 @@ Ejercicio 7: Muestre por consola el nombre de todos los usuarios del JSON del
 archivo json.js
 */
 console.log("---------DATOS EJERCICIO 7---------");
-json.forEach(usuario => console.log(usuario.name)); 
+json.forEach(usuario => console.log(usuario.name)); // La variable "json" está en el archivo "json.js"
 
 /*
 Ejercicio 8: Cree una clase "Usuario" que contenga, lo siguiente:
@@ -107,29 +107,65 @@ propiedades: "calle", "ciudad", "codigoPostal".
 */
 
 class Usuario {
-  constructor(nombre, nombreUser, email, empresa, direccion, url) {
-    this.nombre = nombre;
-    this.nombreUser = nombreUser;
-    this.email = email;
-    this._empresa = empresa;
-    this._direccion = direccion;
-    this.url = url;
+  // Propiedades privadas
+  #idUser;
+  #nombre;
+  #nombreUser;
+  #email;
+  #empresa;
+  #direccion;
+  #url;
+  #edad;
+
+  constructor(nombre, nombreUser, email, empresa, direccion, url, edad) {
+    this.#nombre = nombre;
+    this.#nombreUser = nombreUser;
+    this.#email = email;
+    this.#empresa = empresa;
+    this.#direccion = direccion;
+    this.#url = url;
+    this.#idUser = Usuario.getId(url); // Llamo al método estático para asignar el Id
+    this.#edad = edad;
+  }
+
+  get idUser() {
+    return this.#idUser;
+  }
+
+  get nombre() {
+    return this.#nombre;
+  }
+
+  get nombreUser() {
+    return this.#nombreUser;
+  }
+
+  get email() {
+    return this.#email;
+  }
+
+  get url() {
+    return this.#url;
   }
 
   get empresa() {
-      return { nombre: this._empresa.nombre };
+    return this.#empresa.nombre;
   }
 
   get direccion() {
     return {
-      calle: this._direccion.calle,
-      ciudad: this._direccion.ciudad,
-      codigoPostal: this._direccion.codigoPostal
+      calle: this.#direccion.calle,
+      ciudad: this.#direccion.ciudad,
+      codigoPostal: this.#direccion.codigoPostal
     };
   }
 
+  get edad() {
+    return this.#edad;
+  }
+
   static getId(url) {
-    return url.match(/\/(\d+)\//)[1];
+    return url.match(/\/users\/(\d+)\//)[1]; // Regex que extrae el Id
   }
 }
 
@@ -155,18 +191,18 @@ const userPrueba = new Usuario(
 );
 
 console.log("---------DATOS EJERCICIO 9---------");
-console.log("id:", Usuario.getId(userPrueba.url));
+console.log("id:", userPrueba.idUser);
 console.log("nombre:", userPrueba.nombre);
 console.log("nombre de usuario:", userPrueba.nombreUser);
 console.log("email:", userPrueba.email);
-console.log("empresa:", userPrueba.empresa.nombre);
-console.log("dirección:", userPrueba.direccion.calle + ", " + userPrueba.direccion.ciudad + ", " + userPrueba.direccion.codigoPostal);
+console.log("empresa:", userPrueba.empresa);
+console.log("dirección:", userPrueba.direccion);
 
 /*
 Ejercicio 10: Implemente una función que pasándole como parámetro un objeto del 
 json mapee y cree un objeto del tipo Usuario.
 */
-function convertirJsonUsuario(usuarioJson) {
+function jsonToUsario(usuarioJson) {
   const direccion = {
     calle: usuarioJson.address.street,
     ciudad: usuarioJson.address.city,
@@ -179,10 +215,410 @@ function convertirJsonUsuario(usuarioJson) {
     usuarioJson.name,
     usuarioJson.username,
     usuarioJson.email,
-    usuarioJson.empresa,
-    usuarioJson.direccion,
-    usuarioJson.url
+    empresa,
+    direccion,
+    usuarioJson.url,
+    usuarioJson.age
   );
 
   return usuario;
+}
+
+const usuarioJson = {
+  "name": "Ervin Howell",
+  "username": "Antonette",
+  "email": "Shanna@melissa.tv",
+  "age": "18",
+  "address": {
+    "street": "Victor Plains",
+    "suite": "Suite 879",
+    "city": "Wisokyburgh",
+    "zipcode": "90566-7771",
+    "geo": {
+      "lat": "-43.9509",
+      "lng": "-34.4618"
+    }
+  },
+  "phone": "010-692-6593 x09125",
+  "website": "anastasia.net",
+  "company": {
+    "name": "Deckow-Crist",
+    "catchPhrase": "Proactive didactic contingency",
+    "bs": "synergize scalable supply-chains"
+  },
+  "url": "https://prueba.dev/api/users/2/"
+};
+
+const usuario = jsonToUsario(usuarioJson);
+console.log("---------DATOS EJERCICIO 10---------");
+console.log("id:", Usuario.getId(usuario.url));
+console.log("nombre:", usuario.nombre);
+console.log("nombre de usuario:", usuario.nombreUser);
+console.log("email:", usuario.email);
+console.log("empresa:", usuario.empresa);
+console.log("dirección:", usuario.direccion.calle + ", " + usuario.direccion.ciudad + ", " + usuario.direccion.codigoPostal);
+
+/*
+Ejercicio 11: Implemente una función que recorra el JSON y devuelva un array de
+objetos del tipo Usuario. (Apóyese en la función del ejercicio anterior).
+*/
+
+function getArrayUsuarios(usuariosJson) {
+  const usuarios = [];
+
+  // Recorro el json
+  for (const usuario of usuariosJson) {
+    const nuevoUsuario = jsonToUsario(usuario);
+    usuarios.push(nuevoUsuario); // Añado el usuario devuelto al array
+  }
+
+  return usuarios;
+}
+
+/*
+Ejercicio 12: Cree una variable global que contenga el resultado de la función del
+punto anterior. Muestre por consola SÓLO el nombre del usuario.
+*/
+
+var usuarios = getArrayUsuarios(json);
+
+console.log("---------DATOS EJERCICIO 12---------");
+
+usuarios.forEach(usuario => {
+  console.log(usuario.nombre);
+});
+
+/*
+Ejercicio 13: Cree las variables que considere necesarias, de tal manera que cada variable contenga los usuarios de la misma ciudad.
+Hágalo a partir del array de objetos de usuarios del punto anterior. Muestre el resultado por consola.
+*/
+
+// Declaro una clase que contendrá el nombre de la ciudad, y un array de usuarios de esa ciudad
+class UsuariosPorCiudad {
+  constructor(ciudad) {
+    this.ciudad = ciudad;
+    this.usuarios = [];
+  }
+
+  agregarUsuario(usuario) {
+    this.usuarios.push(usuario);
+  }
+}
+
+// Esta variable almacenará objetos de la clase UsuariosPorCiudad
+const mapaUsuarios = [];
+
+// Extraigo la lista de ciudades únicas
+const ciudadesUnicas = [...new Set(usuarios.map(user => user.direccion.ciudad))];
+
+ciudadesUnicas.forEach(ciudad => {
+  // Obtengo los usuarios de esa ciudad en un array
+  const listaUsuarios = usuarios.filter(user => user.direccion.ciudad === ciudad);
+
+  // Creo un nuevo objeto de la clase UsuariosPorCiudad
+  const usuariosPorCiudad = new UsuariosPorCiudad(ciudad);
+
+  // Recorro la lista de usuarios de esa ciudad y los añado a la lista de usuarios
+  listaUsuarios.forEach(usuario => usuariosPorCiudad.agregarUsuario(usuario));
+
+  // Añado el objeto usuariosPorCiudad al mapa de usuarios
+  mapaUsuarios.push(usuariosPorCiudad);
+});
+
+console.log("---------DATOS EJERCICIO 13---------");
+for (const elemento of mapaUsuarios) {
+  console.log(`Usuarios de la ciudad: ${elemento.ciudad}`);
+
+  // Recorro el array de usuarios de la ciudad
+  for (const usuario of elemento.usuarios) {
+    console.log(`- ${usuario.nombre}`);
+  }
+}
+
+/*
+Ejercicio 14: Ordene de forma creciente los arrays anteriores por el valor de 
+la propiedad "nombre". Muestre el resultado por consola.
+*/
+
+mapaUsuarios.forEach(elemento => {
+  elemento.usuarios.sort((a, b) => a.nombre.localeCompare(b.nombre)); // Orden natural
+});
+
+console.log("---------DATOS EJERCICIO 14---------");
+for (const elemento of mapaUsuarios) {
+  console.log(`Usuarios de la ciudad: ${elemento.ciudad}`);
+
+  // Recorro el array de usuarios de la ciudad
+  for (const usuario of elemento.usuarios) {
+    console.log(`- ${usuario.nombre}`);
+  }
+}
+
+/*
+Ejercicio 15: Implemente la función mostrarUsuarios().
+Inserte en la barra de navegación de la página principal de su proyecto, 
+una opción que se llame "Usuarios", de tal manera, que cuando el usuario haga 
+click sobre ella, se muestre un modal con todos los usuarios ordenados por el 
+valor de la propiedad "nombre".
+Diseñe el modal para que aparezcan los siguientes datos de cada usuario: 
+Nombre, Usuario, Email y Empresa.
+*/
+
+const enlaceUsuarios = document.getElementById("mostrarUsuarios");
+enlaceUsuarios.addEventListener("click", mostrarUsuarios);
+
+// Creo el select para el ejercicio 16
+const selectCiudades = document.createElement("select");
+selectCiudades.id = "selectCiudades";
+selectCiudades.innerHTML = ciudadesUnicas.map((ciudad) => `<option>${ciudad}</option>`).join("");
+
+// Creo el select para el ejercicio 20
+let selectUsuarios = document.createElement("select");
+selectUsuarios.id = "selectUsuarios";
+selectUsuarios.innerHTML = usuarios.map((usuario) => `<option>${usuario.nombre}</option>`).join("");
+
+function mostrarUsuarios() {
+  // Extraigo todos los usuarios para ordenarlos todos
+  const todosLosUsuarios = [];
+  mapaUsuarios.forEach((elemento) => {
+    elemento.usuarios.forEach((usuario) => {
+      todosLosUsuarios.push(usuario);
+    });
+  });
+
+  // Ordeno todos los usuarios por nombre
+  todosLosUsuarios.sort((a, b) => a.nombre.localeCompare(b.nombre));
+
+  // Genero el contenido del modal
+  let contenido = `    
+    <div class="filtrar-ciudad">
+      <label for="selectCiudades">Filtrar por ciudad:</label>
+      ${selectCiudades.outerHTML}
+    </div>
+    <div class="tabla">
+    `;
+
+  todosLosUsuarios.forEach((usuario) => {
+    // Compruebo la ciudad para cambiarle el color
+    let colorTexto = '';
+    if (usuario.direccion.ciudad === 'Gwenborough') {
+      colorTexto = 'blue';
+    } else if (usuario.direccion.ciudad === 'Wisokyburgh') {
+      colorTexto = 'green';
+    }
+
+    contenido += `
+      <div class="usuario" style="color: ${colorTexto}">
+        <h4>${usuario.nombre}</h4>
+        <div class="columna-etiquetas">Usuario:</div><div class="columna-valores">${usuario.nombreUser}</div>
+        <div class="columna-etiquetas">Email:</div><div class="columna-valores">${usuario.email}</div>
+        <div class="columna-etiquetas">Empresa:</div><div class="columna-valores">${usuario.empresa}</div>
+      </div>
+    `;
+  });
+
+  // Mostrar los datos calculados para todos los usuarios
+  const datosUsuarios = calcularDatos();
+  contenido += `
+      <div class="datos-usuarios">
+        <h2>Datos de los usuarios:</h2>
+        <div>Menor edad: ${datosUsuarios.menorEdad} (${datosUsuarios.nombreMenorEdad})</div>
+        <div>Mayor edad: ${datosUsuarios.mayorEdad} (${datosUsuarios.nombreMayorEdad})</div>
+      </div>
+    </div>
+  `;
+
+  contenido += ` 
+  <div class="filtrar-usuario">
+    <label for="selectUsuarios">Usuarios:</label>
+    ${selectUsuarios.outerHTML}
+  </div>
+`;
+
+  // Agrego un elemento html para mostrar la dirección del usuario
+  contenido += `<div class="direccion-usuario"></div>`;
+
+  // Utilizo la librería SweetAlert2 para el modal
+  Swal.fire({
+    title: 'Usuarios',
+    html: contenido,
+    showClass: {
+      popup: 'animate__animated animate__fadeInDown'
+    },
+    hideClass: {
+      popup: 'animate__animated animate__fadeOutUp'
+    },
+    didOpen: () => {
+      // Obtengo el select de ciudades
+      const selectCiudades = document.querySelector('#selectCiudades');
+
+      // Agrego evento "change" al select de ciudades
+      selectCiudades.addEventListener('change', (evento) => {
+        const ciudadSeleccionada = evento.target.value;
+        filtrarCiudad(ciudadSeleccionada);
+      });
+
+      // Obtengo el select de usuarios
+      const selectUsuarios = document.querySelector('#selectUsuarios');
+
+      // Agrego evento "change" al select de usuarios
+      selectUsuarios.addEventListener('change', (evento) => {
+        const usuarioSeleccionado = evento.target.value;
+        filtrarDireccion(usuarioSeleccionado);
+      });
+    }
+  });
+}
+
+/*
+Ejercicio 16: Implemente la función filtrarCiudad().
+En el modal del ejercicio anterior, inserte un elemento Select que muestre 
+como opciones los valores de las ciudades del json.
+Cuando el usuario seleccione una ciudad de la lista desplegable, 
+se deberá actualizar la vista mostrando solamente aquellos que sean de la ciudad seleccionada.
+*/
+
+function filtrarCiudad(ciudad) {
+  // Filtrar los usuarios de la ciudad seleccionada
+  const usuariosCiudad = usuarios.filter((usuario) => usuario.direccion.ciudad === ciudad);
+
+  // Genero el html de los usuarios filtrados
+  let contenidoFiltrado = `<div class="tabla">`;
+  usuariosCiudad.forEach((usuario) => {
+    // Compruebo la ciudad para cambiarle el color
+    let colorTexto = '';
+    if (ciudad === 'Gwenborough') {
+      colorTexto = 'blue';
+    } else if (ciudad === 'Wisokyburgh') {
+      colorTexto = 'green';
+    }
+    contenidoFiltrado += `
+      <div class="usuario" style="color: ${colorTexto}">
+        <h4>${usuario.nombre}</h4>
+        <div class="columna-etiquetas">Usuario:</div><div class="columna-valores">${usuario.nombreUser}</div>
+        <div class="columna-etiquetas">Email:</div><div class="columna-valores">${usuario.email}</div>
+        <div class="columna-etiquetas">Empresa:</div><div class="columna-valores">${usuario.empresa}</div>
+      </div>
+    `;
+  });
+
+  // Mostrar los datos calculados para todos los usuarios
+  const datosUsuarios = calcularDatos(ciudad);
+  contenidoFiltrado += `
+      <div class="datos-usuarios">
+        <h2>Datos de los usuarios:</h2>
+        <div>Menor edad: ${datosUsuarios.menorEdad} (${datosUsuarios.nombreMenorEdad})</div>
+        <div>Mayor edad: ${datosUsuarios.mayorEdad} (${datosUsuarios.nombreMayorEdad})</div>
+      </div>
+    </div>
+  `;
+
+  // Obtengo el elemento HTML del contenido del modal
+  const contenidoModal = Swal.getHtmlContainer();
+
+  // Busco el select de ciudades dentro del contenido del modal
+  const usuariosHtml = contenidoModal.querySelector(".tabla");
+  // Actualizo el contenido
+  usuariosHtml.innerHTML = contenidoFiltrado;
+}
+
+/*
+Ejercicio 17:
+Modifique la función del ejercicio 15, para que cambie el color 
+del texto de los usuarios mostrados en función de la ciudad del usuario:
+Gwenborough, color = azul Wisokyburgh, color = verde
+*/
+
+// Modificada en el ejercicio 15.
+
+/*
+Ejericio 18:
+Implemente una función calcularDatos(), que obtenga los siguientes datos de todos los usuarios:
+- Menor edad
+- Nombre del usuario de menor edad
+- Mayor edad
+- Nombre del usuario de mayor edad
+Esta función se debe invocar cuando se muestren los datos de los usuarios mostrarUsuarios().
+Por lo tanto, deberá insertar en el modal, a continuación del listado de usuarios, los elementos que estime oportuno para mostrar estos datos obtenidos a través de la función calcularDatos().
+Cuando se seleccione una ciudad a través del elemento Select, también se deberán actualizar estos datos, calculados según la ciudad seleccionada.
+*/
+
+function calcularDatos(ciudadSeleccionada) {
+  let usuariosFiltrados;
+  if (ciudadSeleccionada) {
+    usuariosFiltrados = usuarios.filter((usuario) => usuario.direccion.ciudad === ciudadSeleccionada);
+  } else {
+    usuariosFiltrados = usuarios;
+  }
+
+  // Calculo la menor edad y el nombre del usuario de menor edad
+  let menorEdad = Infinity;
+  let nombreMenorEdad = "";
+  usuariosFiltrados.forEach((usuario) => {
+    if (usuario.edad < menorEdad) {
+      menorEdad = usuario.edad;
+      nombreMenorEdad = usuario.nombre;
+    }
+  });
+
+  // Calculo la mayor edad y el nombre del usuario de mayor edad
+  let mayorEdad = -Infinity;
+  let nombreMayorEdad = "";
+  usuariosFiltrados.forEach((usuario) => {
+    if (usuario.edad > mayorEdad) {
+      mayorEdad = usuario.edad;
+      nombreMayorEdad = usuario.nombre;
+    }
+  });
+
+  // Devuelvo los resultados
+  return {
+    menorEdad,
+    nombreMenorEdad,
+    mayorEdad,
+    nombreMayorEdad,
+  };
+}
+
+/*
+Ejercicio 19: Implemente un evento, de tal manera que cuando se pulse la tecla "p" (minúscula) ó "P" (mayúscula) 
+aparezca una ventana con el texto de la variable global practica (Ejercicio 1), 
+esta ventana se debe cerrar automáticamente pasado 3 segundos. 
+*/
+
+// Evento para mostrar la ventana con el contenido de la variable "practica" del localStorage
+window.addEventListener("keydown", function (event) {
+  // Compruebo si se ha pulsado la tecla "p" o "P"
+  if (event.key === "p" || event.key === "P") {
+    // Obtengo el contenido de la variable "practica" del localStorage
+    const practica = localStorage.getItem("practica");
+
+    // Muestro el contenido en una ventana de SweetAlert2
+    Swal.fire({
+      title: practica,
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true
+    });
+  }
+});
+
+/*
+Ejercicio 20: Implemente la función filtrarDireccion(), de tal manera que cuando el usuario
+seleccione un usuario en la lista desplegable, aparezca su dirección con el 
+siguiente formato: C/ nombre de la calle, Ciudad (código postal).
+Para ello, deberá insertar, al final del modal, un elemento Select que muestre como opciones 
+los nombres de todos los usuarios, y otro elemento html, de su elección, que muestre su dirección con el formato exigido.
+*/
+
+function filtrarDireccion(usuario) {
+  // Busco al usuario por nombre
+  let usuarioSeleccionado = usuarios.find(u => u.nombre === usuario);
+
+  // Obtengo la dirección
+  const direccion = `C/ ${usuarioSeleccionado.direccion.calle}, ${usuarioSeleccionado.direccion.ciudad} (${usuarioSeleccionado.direccion.codigoPostal})`;
+
+  // Actualizo el contenido del elemento html que muestra la dirección
+  const direccionUsuario = document.querySelector('.direccion-usuario');
+  direccionUsuario.innerHTML = direccion;
 }
